@@ -1,5 +1,6 @@
+import java.util.Collections;
 
-public class User {
+public class User implements Comparable {
 	private String name;
 	private Integer age;
 	private boolean isMale;
@@ -14,19 +15,6 @@ public class User {
 		this.isMale=isMale;
 	}
 	
-	/**
-	 * Compare deux User par leurs noms
-	 * @param Premier User
-	 * @param Second User à comparer au premier
-	 * @return 1 si le premier User est alphabeticalement inférieur, -1 sinon
-	 */
-	public static int compareTo (User u1, User u2) {
-		if(u1.getName().compareTo(u2.getName())>0)
-			return 1;
-		else
-			return -1;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -53,6 +41,15 @@ public class User {
 
 	public String toString() {
 		return "User [name=" + name + ", age=" + age + ", isMale=" + isMale + "]";
+	}
+
+	/**
+	 * Compare deux User et retourne -1 si l'Objet passé en paramètre n'est pas un User
+	 */
+	public int compareTo(Object u) {
+		if(u instanceof User)
+			return this.getName().compareTo(((User)u).getName());
+		return -1;
 	}
 	
 }
